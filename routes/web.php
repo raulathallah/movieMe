@@ -22,11 +22,14 @@ Route::get('/movies', [MovieController::class, 'getMovies']);
 Route::get('/movies/{id}', [MovieController::class, 'getDetails']);
 Route::get('/search', [HomeController::class, 'searchMovie']);
 
-Route::middleware(['auth'])->group(function(){
+Route::middleware(['checkadmin'])->group(function(){
     Route::get('/add-movie', [MovieController::class, 'getAddMovie']);
     Route::post('/add-movie', [MovieController::class, 'postAddMovie']);
     Route::post('/delete/{id}', [MovieController::class, 'postDeleteMovie']);
     Route::get('/movie-edit/{id}', [MovieController::class, 'getEditMovie']);
     Route::post('/movie-edited/{id}', [MovieController::class, 'postEditMovie']);
+    Route::get('/add-genre', [MovieController::class, 'getAddGenre']);
+    Route::post('/add-genre', [MovieController::class, 'postAddGenre']);
+    Route::post('/delete-genre/{id}', [MovieController::class, 'postDeleteGenre']);
 });
 

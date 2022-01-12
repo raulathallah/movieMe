@@ -47,6 +47,9 @@
                                     <li class="nav-item mx-2">
                                         <a href="{{url('/movies')}}" class="nav-link btn btn-info" style="color: white">Manage Movies</a>
                                     </li>
+                                    <li>
+                                        <a href="{{url('/add-movie')}}" class="btn btn-warning">Add Movie</a>
+                                    </li>
                                 @endif
                         @endguest
                     </ul>

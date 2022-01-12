@@ -128,4 +128,37 @@ class MovieController extends Controller
 
         return redirect('/movies')->with('success', true)->with('message', 'Movie updated.');
     }
+
+    public function getAddGenre(){
+        $genre = Genre::all();
+
+        $data = [
+            'genre' => $genre
+        ];
+
+        return view('addGenre', $data);
+    }
+
+    public function postAddGenre(Request $request){
+        $rules = Validator::make($request->all(), [
+            'genre_name' => 'unique:genres,genre_name'
+        ]);
+        $rules->validate();
+
+        $obj = new Genre;
+        $obj->genre_name = $request->genre_name;
+        $obj->save();
+
+        return redirect('/add-genre')->with('success', true)->with('message', 'Genre added.');
+    }
+
+    public function postDeleteGenre(Request $request){
+
+        $id = $request->id;
+        $selectedGenre = Genre::where('id', $id)->first();
+
+        $selectedGenre->delete();
+
+        return redirect('/add-genre')->with('success', true)->with('message', 'Genre removed.');
+    }
 }

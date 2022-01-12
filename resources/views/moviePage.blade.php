@@ -10,9 +10,16 @@
                 <li class="breadcrumb-item active" aria-current="page">Movies</li>
             </ol>
         </nav>
-        
-        <div class="d-flex">
-            @guest
+        @guest
+        <form action="/search" method="GET" class="m-0 align-items-center">
+            <div class="d-flex">
+                <div class="px-3"> 
+                    <input type="text" id="search-box" name="param" style="width: 200px; height:38" class="form-control">
+                </div>
+                <input type="submit" class="btn btn-outline-secondary" value="Search">
+            </div>
+        </form>
+            @else
             <form action="/search" method="GET" class="m-0 align-items-center">
                 <div class="d-flex">
                     <div class="px-3"> 
@@ -21,22 +28,7 @@
                     <input type="submit" class="btn btn-outline-secondary" value="Search">
                 </div>
             </form>
-            @else
-                @if(Auth::user()->isAdministrator())
-                <a href="{{url('/add-movie')}}" class="btn btn-warning">Add Movie</a>
-                <form action="/search" method="GET" class="m-0 align-items-center">
-                    <div class="d-flex">
-                        <div class="px-3"> 
-                            <input type="text" id="search-box" name="param" style="width: 200px; height:38" class="form-control">
-                        </div>
-                        <input type="submit" class="btn btn-outline-secondary" value="Search">
-                    </div>
-                </form>
-                @endif
-            @endguest
-        </div>
-    
-        
+        @endguest
     </div>
     
     @if(Session::has('success'))
@@ -68,13 +60,7 @@
                             <button style="width:100%" type="submit" value="delete-movie" class="btn btn-danger">Delete Movie</button>
                         </form>   
                     </div>
-                </div>
-                
-
-                       
-                    
-                    
-                   
+                </div>   
                 @endif   
             @endguest
             
