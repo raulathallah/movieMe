@@ -16,9 +16,11 @@ class CheckAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if($request->user()->id == 1){
+        if($request->user() == null){
+            return redirect('/login');
+        }else{
             return $next($request);
         }
-        return redirect('/login');
+        
     }
 }

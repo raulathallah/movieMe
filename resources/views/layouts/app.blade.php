@@ -39,16 +39,19 @@
 
                     <ul class="navbar-nav">
                         @guest
-                            <li class="nav-item mx-2">
-                                <a href="{{url('/movies')}}" class="nav-link btn btn-light">Movie List</a>
+                            <li class="me-2">
+                                <a href="{{url('/movies')}}" class="btn btn-light">Movie List</a>
                             </li>
                             @else
                                 @if(Auth::user()->isAdministrator())
-                                    <li class="nav-item mx-2">
-                                        <a href="{{url('/movies')}}" class="nav-link btn btn-info" style="color: white">Manage Movies</a>
+                                    <li class="me-2">
+                                        <a href="{{url('/movies')}}" class="btn btn-light">Manage Movies</a>
                                     </li>
-                                    <li>
-                                        <a href="{{url('/add-movie')}}" class="btn btn-warning">Add Movie</a>
+                                    <li class="me-2">
+                                        <a href="{{url('/add-movie')}}" class="btn btn-light">Add Movie</a>
+                                    </li>
+                                    <li class="me-2">
+                                        <a href="{{url('/add-genre')}}" class="btn btn-light">Add Genre</a>
                                     </li>
                                 @endif
                         @endguest

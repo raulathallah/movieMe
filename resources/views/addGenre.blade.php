@@ -10,26 +10,8 @@
             <strong>Success!</strong> {{ Session::get('message', '') }}
         </div>
     @endif
-    
-    <p class="text-secondary m-2">AVAILABLE CATEGORIES</p>
-    <div class="d-flex flex-wrap">
-        @foreach($genre as $item)
-        <div class="card m-2">
-            <div class="card-body">
-                {{$item->genre_name}}
-            </div>
-            <div class="card-footer">
-                <form action="/delete-genre/{{$item->id}}" method="POST">
-                    @csrf
-                    <button style="width:100%" type="submit" value="delete-movie" class="btn btn-danger btn-sm" >Delete</button>
-                </form>  
-            </div>
-             
-        </div>
-        @endforeach
-    </div>
 
-    <h2 class="font-weight-bold my-5">Add new genre</h2>
+    <h2 class="font-weight-bold my-3">Add New Genre</h2>
     
     <form action="/add-genre" method="POST">
 
@@ -51,6 +33,27 @@
             <button class="btn btn-primary my-3 ms-2" type="submit">Add Genre</button>
         </div>
     </form>
+
+    <div class="mt-5">
+        <p class="text-secondary mt-3">AVAILABLE GENRE</p>
+        <div class="d-flex flex-wrap">
+            @foreach($genre as $item)
+            <div class="card me-4">
+                <div class="card-body">
+                    {{$item->genre_name}}
+                </div>
+                <div class="card-footer">
+                    <form action="/delete-genre/{{$item->id}}" method="POST">
+                        @csrf
+                        <button style="width:100%" type="submit" value="delete-movie" class="btn btn-danger btn-sm" >Delete</button>
+                    </form>  
+                </div>
+                
+            </div>
+            @endforeach
+        </div>  
+    </div>
+    
 </div>
 
 @endsection

@@ -12,10 +12,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     /**
      * Show the application dashboard.
@@ -29,10 +29,10 @@ class HomeController extends Controller
 
     public function searchMovie(Request $request){
         
-        $selectedMovie = Movie::where('movie_name', 'like', "%$request->param%")->paginate(6);
+        $searchedMovie = Movie::where('movie_name', 'like', "%$request->param%")->paginate(6);
 
         $data = [
-            'movies' => $selectedMovie
+            'movies' => $searchedMovie
         ];
 
         return view('moviePage', $data);
